@@ -49,10 +49,12 @@ export class OidcClient {
     const res = await httpclient
       .getJson<TokenResponse>(id_token_url)
       .catch(error => {
+        console.error('error', error);
+        console.error('error.result', error.result);
         throw new Error(
           `Failed to get ID Token. \n 
         Error Code : ${error.statusCode}\n 
-        Error Message: ${error.result.message}`
+        Error Message: ${error.result?.message}`
         )
       })
 
